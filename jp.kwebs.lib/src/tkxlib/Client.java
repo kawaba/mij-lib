@@ -14,7 +14,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
-public class Server {
+public class Client {
 
 	private static <T> TypeReference<T> type(Class<T> type) {
 		return new TypeReference<T>() {
@@ -74,14 +74,14 @@ public class Server {
 		// 
 		String url = "https://openexchangerates.org/api/latest.json?app_id=2c2a442738aa4f37bf82054c3369eb14&base=USD&symbols=JPY,EUR,KRW";
 
-		Exchange ratedata = Server.read(url, Exchange.class);
+		Exchange ratedata = Client.read(url, Exchange.class);
 		System.out.println(ratedata);
 
 		///////////
 		// ローカルでmijserviceプロジェクトを起動して、レコードを取得する
 
 		url = "http://localhost:8080/book/1";
-		Book book = Server.read(url, Book.class);
+		Book book = Client.read(url, Book.class);
 		System.out.println(book);
 
 	}
@@ -89,6 +89,8 @@ public class Server {
 }
 
 /**
+ * 以下はmainのテスト用
+ * 
  * JSONを受け取る汎用クラス
  * 
  */
